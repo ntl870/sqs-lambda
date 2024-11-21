@@ -1,0 +1,17 @@
+AWSTemplateFormatVersion : '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: 'SQS Lambda test'
+
+Resources:
+  SQSLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: sqs-lambda
+      Runtime: nodejs20.x
+      Role: arn:aws:iam::170888089333:role/sqs-lambda-execution-role
+      Handler: dist/index.handler
+      Timeout: 300
+      MemorySize: 256
+      # Environment:
+      #   Variables:
+      #     DEAD_LETTER_QUEUE_URL: https://sqs.us-east-1.amazonaws.com/123456789012/DeadLetterQueue
